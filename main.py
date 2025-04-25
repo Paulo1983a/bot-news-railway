@@ -22,13 +22,13 @@ def capturar_noticias():
         noticias.append(f"Alerta de notícia relevante: {palavra}")
     return noticias
 
-# LOOP AUTOMÁTICO CADA 15 MIN DAS 07H ÀS 19H (horário de Brasília)
+# EXECUTA APENAS ÀS 19:00 (horário de Brasília)
 while True:
     agora = datetime.utcnow() + timedelta(hours=-3)
     hora = agora.hour
     minuto = agora.minute
 
-    if 7 <= hora <= 19 and minuto % 15 == 0:
+    if hora == 19 and minuto == 0:
         noticias = capturar_noticias()
         if noticias:
             mensagem = "\n".join(noticias)
